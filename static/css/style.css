@@ -376,7 +376,6 @@ ul {
 .footer-col ul li a {
     font-size: 16px;
     text-transform: capitalize;
-    color: #ffffff;
     text-decoration: none;
     font-weight: 300;
     color: #bbbbbb;
@@ -427,6 +426,10 @@ ul {
 @media screen and (max-width: 1024px) {
     .custom-card {
         height: auto;
+    }
+
+    .invert{
+        color: inherit;
     }
 
     .custom-card p {
