@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock title %}
+
+
+{% block content %}
+    <section class="main">
+        <div class="hero">
+            {% load static %}
+            <img src="{% static 'images/logos+banners/hero-bg.webp' %}" alt="" class="img-hero">
+        </div>
+
+        <div class="mid">
+            <div class="custom-card clone"></div>
+            <div class="custom-card">
+                <p>
+                    We are a decentralised barber and hair salon located across the country specialising in timeless
+                    looks and trend styles
+                </p>
+            </div>
+        </div>
+    </section>
+    <a href="#offerings" class="scroll-down"></a>
+    <section class="offerings">
+        <h1 id="offerings">Our Offerings</h1>
+        <div class="flex-offerings">
+            <div class="flex-div">
+                <h2>Hair cut and style</h2>
+                <p>Our Professional stylists will cut and style your hair to your specifications. Lets us put our
+                    creativity to work for you with a custom look</p>
+            </div>
+            <div class="flex-div">
+                <h2>Hair color</h2>
+                <p>Our hair colorists are wizards with hair dye products. Tell us your vision, and we'll make it happen.
+                </p>
+            </div>
+            <div class="flex-div">
+                <h2>Manicures</h2>
+                <p>Our nail technicians are highly experienced. Schedule your pedicure and come in for some pampering.
+                </p>
+            </div>
+        </div>
+        <button class="explore">Explore</button>
+    </section>
+
+    <section class="testimonials container mt-6">
+        <figure class="snip1574">
+            <img src="{% static 'images/haircuts/test1.jpg' %}" alt="profile-sample1"/>
+            <figcaption>
+                <blockquote>
+                    <p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+                </blockquote>
+                <h3 class="mt-6">Rob Stark</h3>
+                <h5>Client</h5>
+            </figcaption>
+        </figure>
+        <figure class="snip1574"><img src="{% static 'images/haircuts/test2.jpg' %}" alt="profile-sample2"/>
+            <figcaption>
+                <blockquote>
+                    <p>I've never been so consistently not disappointed by anything.</p>
+                </blockquote>
+                <h3 class="mt-6">Will Barrow</h3>
+                <h5>Web Designer</h5>
+            </figcaption>
+        </figure>
+        <figure class="snip1574"><img src="{% static 'images/haircuts/test3.jpg' %}" alt="profile-sample3"/>
+            <figcaption>
+                <blockquote>
+                    <p>Prompt.
+                    </p>
+                </blockquote>
+                <h3 class="mt-6">Indigo Violet</h3>
+                <h5>Client</h5>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="mission">
+
+        <h1>Our Mission</h1>
+        <p>
+            To provide style artistry, color and confidence inducing looks"
+        </p>
+
+    </section>
+{% endblock %}

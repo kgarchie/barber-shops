@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Book</title>
+{% endblock title %}
+
+
+{% block content %}
+    <!-- make this a subscription service, as long as you have the account, you can book an appointment on any of our shop accross the country at any time -->
+    <section class="container mt-6 invert">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label invert">
+                    Choose your Cut
+                </label>
+                <div class="control">
+                    <div class="select">
+                        <select name="{{ form.cut.html_name }}">
+                            {% for cut in cuts %}
+                                <option value="{{ cuts.id }}">{{ cut }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label invert">
+                    Choose your Barber
+                </label>
+                <div class="control">
+                    <div class="select">
+                        <select name="{{ form.barber.html_name }}">
+                            {% for barber in barbers %}
+                                <option value="{{ barber.id }}">{{ barber }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label invert" for="locale">
+                    Choose your Location
+                </label>
+                <div class="control">
+                    <div class="select">
+                        <select name="{{ form.locale.html_name }}" id="locale">
+                            {% for locale in locales %}
+                                <option value="{{ locale.id }}">{{ locale }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="label invert">Dye?</div>
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" name="dye">
+                        Black Dye
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label invert">
+                    Something Else
+                </label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Want to tell anything?"
+                              name="{{ form.sth.html_name }}"></textarea>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-success">
+                        Book Appointment
+                    </button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+            <div class="field">
+                {% if form.errors %}
+                    {% for error in form.errors %}
+                        <p class="help is-danger is-bold">{{ error.capitalize }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </form>
+    </section>
+{% endblock %}

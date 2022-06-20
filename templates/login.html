@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Log In</title>
+{% endblock title %}
+
+
+{% block content %}
+    <section class="mtb">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="column is-half is-offset-one-quarter">
+
+                <div class="field">
+                    <label class="label invert">Username:</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Username" name="username">
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label invert">Password:</label>
+                    <p class="control has-icons-left">
+                        <input class="input" type="password" placeholder="Password" name="password">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    </p>
+                </div>
+
+                <div class="field is-grouped mt-4">
+                    {% if request.GET.next %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
+                    <div class="control">
+                        <button type="submit" class="button is-link">Continue</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-link is-light">Cancel</button>
+                    </div>
+                </div>
+
+                {% if errors %}
+                    {% for error in errors %}
+                        <p class="help is-danger is-bold">{{ error.capitalize }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <a href="{% url 'app:register' %}">Register</a> &nbsp; | &nbsp;
+                <a href="{% url 'password_reset' %}" style="color: #00c4a7">Forgot Password?</a>
+            </div>
+        </form>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bulma/bulma.min.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'images/logos+banners/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'images/logos+banners/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'images/logos+banners/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/logos+banners/favicons/site.webmanifest' %}">
+</head>
+
+<body>
+<nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'app:home' %}">
+            <img src="{% static 'images/logos+banners/logo_alt.png' %}" class="logo">
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item prop invert" href="{% url 'app:appointments' %}">
+                Appointments
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link prop invert">
+                    More
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="{% url 'app:about' %}">
+                        About
+                    </a>
+
+                    <a class="navbar-item">
+                        Contact
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Report an issue
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-link" href="{% url 'app:book' %}">
+                        <strong>Book Now</strong>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <a class="button is-light" href="{% url 'app:logout' %}">
+                            Log out
+                        </a>
+                    {% else %}
+                        <a class="button is-primary" href="{% url 'app:register' %}">
+                            Sign up
+                        </a>
+                        <a class="button is-light" href="{% url 'app:login' %}">
+                            Log in
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
+<footer class="footer">
+    <div class="custom-container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>get help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">Refunds</a></li>
+                    <li><a href="#">Payment options</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>online shop</h4>
+                <ul>
+                    <li><a href="#">watch</a></li>
+                    <li><a href="#">bag</a></li>
+                    <li><a href="#">shoes</a></li>
+                    <li><a href="#">pants</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    if(document.title !== 'Home'){
+        const elems = document.querySelectorAll('.prop');
+
+        elems.forEach(element => {
+            element.classList.add('invert');
+        });
+    }
+</script>
+</body>
+
+
+</html>
