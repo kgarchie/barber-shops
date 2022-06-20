@@ -62,7 +62,7 @@
                 </div>
                 {% if form.errors %}
                     {% for error in form.errors %}
-                        <p class="help is-danger" id="help">An internal error occurred, a user with the username you are trying to create may already exist. Please try again.</p>
+                        <p class="help is-danger" id="help">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
 

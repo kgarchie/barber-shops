@@ -106,3 +106,7 @@ def appointments(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def cs(request):
+    return render(request, 'cs.html')

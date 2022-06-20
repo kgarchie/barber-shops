@@ -31,14 +31,14 @@
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample">
+           data-target="navbar">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbar" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item prop invert" href="{% url 'app:appointments' %}">
                 Appointments
@@ -99,37 +99,34 @@
             <div class="footer-col">
                 <h4>company</h4>
                 <ul>
-                    <li><a href="#">about us</a></li>
-                    <li><a href="#">our services</a></li>
-                    <li><a href="#">privacy policy</a></li>
-                    <li><a href="#">affiliate program</a></li>
+                    <li><a href="{% url 'app:home' %}">about us</a></li>
+                    <li><a href="{% url 'app:home' %}">our services</a></li>
+                    <li><a href="{% url 'app:about' %}">privacy policy</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>get help</h4>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Locations</a></li>
-                    <li><a href="#">Refunds</a></li>
-                    <li><a href="#">Payment options</a></li>
+                    <li><a href="{% url 'app:about' %}">FAQ</a></li>
+                    <li><a href="https://github.com/kgarchie/barber-shops" target="_blank">Source Code</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>online shop</h4>
                 <ul>
-                    <li><a href="#">watch</a></li>
-                    <li><a href="#">bag</a></li>
-                    <li><a href="#">shoes</a></li>
-                    <li><a href="#">pants</a></li>
+                    <li><a href="{% url 'app:cs' %}">watch</a></li>
+                    <li><a href="{% url 'app:cs' %}">bag</a></li>
+                    <li><a href="{% url 'app:cs' %}">shoes</a></li>
+                    <li><a href="{% url 'app:cs' %}">pants</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>follow us</h4>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/kreezy.genie/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/allan_archie" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/jinn.allan/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/allan-bosire-13b066180/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
