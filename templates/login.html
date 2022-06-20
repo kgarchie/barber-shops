@@ -41,9 +41,9 @@
                     </div>
                 </div>
 
-                {% if errors %}
-                    {% for error in errors %}
-                        <p class="help is-danger is-bold">{{ error.capitalize }}</p>
+                {% if form.errors %}
+                    {% for error in form.errors %}
+                        <p class="help is-danger" id="help">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
 
