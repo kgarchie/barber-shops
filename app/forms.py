@@ -12,4 +12,7 @@ class UserCreationForm(forms.ModelForm):
 class AppointmentsCreationForm(forms.ModelForm):
     class Meta:
         model = Appointments
-        fields = ('cut', 'barber', 'dye', 'sth', 'locale')
+        # disable the below during your first python manage.py migrate
+        # fields = ('cut', 'barber', 'dye', 'sth', 'locale')
+        # use the below instead this is to prevent lookup error in models, also, create a new barber before enabling
+        fields = ('cut', 'dye', 'sth', 'locale')  # this part

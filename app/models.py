@@ -39,8 +39,9 @@ class Cut(models.Model):
 class Appointments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cut = models.ForeignKey(Cut, on_delete=models.CASCADE, default=1)
-    barber = models.ForeignKey(Barber, on_delete=models.CASCADE,
-                               default=random.randrange(Barber.objects.filter(available=True).count()))
+    # disable the line below to prevent reference errors
+    # barber = models.ForeignKey(Barber, on_delete=models.CASCADE,
+    #                            default=random.randrange(Barber.objects.filter(available=True).count()))
     dye = models.BooleanField()
     sth = models.TextField(blank=True, null=True)
     locale = models.ForeignKey(Locations, on_delete=models.CASCADE, default=1)
