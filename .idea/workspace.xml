@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f5e616e-58d3-4efa-b049-118276d2bf12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hero-bg.webp" beforeDir="false" />
-    </list>
+    <list default="true" id="5f5e616e-58d3-4efa-b049-118276d2bf12" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +95,7 @@
       <workItem from="1655652954434" duration="3802000" />
       <workItem from="1655699531893" duration="925000" />
       <workItem from="1655700643067" duration="13000" />
-      <workItem from="1655700677351" duration="3503000" />
+      <workItem from="1655700677351" duration="3914000" />
     </task>
     <servers />
   </component>
