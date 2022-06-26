@@ -165,4 +165,5 @@ def lipa_na_mpesa_online(phone):
         "TransactionDesc": "Testing stk push"
     }
     response = requests.post(api_url, json=request, headers=headers)
-    return HttpResponse('success')
+    print(response)
+    return HttpResponse(str(response))

@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f5e616e-58d3-4efa-b049-118276d2bf12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/516c8f1b-56c1-465a-a4fc-86c4d61f4ec9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/516c8f1b-56c1-465a-a4fc-86c4d61f4ec9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barber-shop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/barber-shop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bookings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bookings.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +106,7 @@
       <workItem from="1655700677351" duration="7208000" />
       <workItem from="1655713555634" duration="2772000" />
       <workItem from="1655745580174" duration="493000" />
-      <workItem from="1656227656260" duration="2336000" />
+      <workItem from="1656227656260" duration="3020000" />
     </task>
     <servers />
   </component>
