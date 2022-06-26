@@ -69,24 +69,43 @@
             font-size: 14px;
         }
 
-        .is-grid{
+        .is-grid {
             margin-top: 6rem;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 5rem;
         }
 
-        @media screen and (max-width: 1220px){
-            .is-grid{
+        @media screen and (max-width: 1220px) {
+            .is-grid {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
             }
         }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print, #section-to-print * {
+                visibility: visible;
+            }
+
+            #section-to-print{
+                position: absolute;
+                width: 50vw;
+                height: 50vh;
+                display: grid;
+                left: 25vw;
+                place-items: center;
+            }
+        }
     </style>
     <div class="container is-grid">
         {% for appointment in appointments %}
-            <div class="card p-4 mt-3">
+            <div class="card p-4 mt-3" {% if forloop.first %} id="section-to-print" {% endif %}>
                 <div class="first d-flex justify-content-between align-items-center mb-3">
                     <div class="info">
                         <span class="d-block name">Thank you, {{ user.username }}</span>
@@ -105,8 +124,11 @@
                 <span class="d-block address mb-3">{{ appointment.locale }}</span>
                 <div class="  money d-flex flex-row mt-2 align-items-center">
                     <img src="https://i.imgur.com/ppwgjMU.png" width="20"/>
-
-                    <span class="ml-2">Cash on Service</span>
+                    {% if forloop.first %}
+                        <span class="ml-2"><button class="button is-info" onclick="window.print()">Print</button></span>
+                    {% else %}
+                        <span class="ml-2"><button class="button is-danger">Expired</button></span>
+                    {% endif %}
 
                 </div>
             </div>
