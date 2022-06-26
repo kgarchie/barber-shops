@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Django default">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.39">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.40">
     <root id="1">
       <ServerVersion>3.36.0</ServerVersion>
     </root>
@@ -1382,6 +1382,7 @@
     <key id="504" parent="473">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="505" parent="474" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1435,6 +1436,7 @@
     <key id="515" parent="474">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="516" parent="475" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1450,6 +1452,7 @@
     <key id="518" parent="475">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="519" parent="476" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1470,6 +1473,7 @@
     <key id="522" parent="476">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="523" parent="477" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1490,6 +1494,7 @@
     <key id="526" parent="477">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <key id="527" parent="477">
       <ColNames>name</ColNames>
@@ -1539,6 +1544,7 @@ permission_id</ColNames>
     <key id="536" parent="478">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="537" parent="479" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1579,6 +1585,7 @@ codename</ColNames>
     <key id="544" parent="479">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="545" parent="480" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1643,6 +1650,7 @@ codename</ColNames>
     <key id="557" parent="480">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <key id="558" parent="480">
       <ColNames>username</ColNames>
@@ -1692,6 +1700,7 @@ group_id</ColNames>
     <key id="567" parent="481">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="568" parent="482" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1737,6 +1746,7 @@ permission_id</ColNames>
     <key id="576" parent="482">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <check id="577" parent="483">
       <Predicate>&quot;action_flag&quot; &gt;= 0</Predicate>
@@ -1803,6 +1813,7 @@ permission_id</ColNames>
     <key id="590" parent="483">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="591" parent="484" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1828,6 +1839,7 @@ model</ColNames>
     <key id="595" parent="484">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="596" parent="485" name="id">
       <AutoIncrement>1</AutoIncrement>
@@ -1853,6 +1865,7 @@ model</ColNames>
     <key id="600" parent="485">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="601" parent="486" name="session_key">
       <DataType>varchar(40)|0s</DataType>

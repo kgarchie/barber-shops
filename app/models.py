@@ -46,5 +46,8 @@ class Appointments(models.Model):
     sth = models.TextField(blank=True, null=True)
     locale = models.ForeignKey(Locations, on_delete=models.CASCADE, default=1)
 
+    class Meta:
+        verbose_name_plural = "Appointments"
+
     def __str__(self):
         return self.user.username

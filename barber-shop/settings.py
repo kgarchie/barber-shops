@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     'django_heroku',
+    'django_daraja',
 ]
 
 MIDDLEWARE = [
