@@ -11,7 +11,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bulma/bulma.min.css' %}">
     <script src="{% static 'js/main.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="apple-touch-icon" sizes="180x180"
@@ -21,6 +21,7 @@
     <link rel="icon" type="image/png" sizes="16x16"
           href="{% static 'images/logos+banners/favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'images/logos+banners/favicons/site.webmanifest' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -123,17 +124,19 @@
             <div class="footer-col">
                 <h4>follow us</h4>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/kreezy.genie/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/kreezy.genie/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
                     <a href="https://twitter.com/allan_archie" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.instagram.com/jinn.allan/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/allan-bosire-13b066180/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/allan-bosire-13b066180/" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
 <script>
-    if(document.title !== 'Home'){
+    if (document.title !== 'Home') {
         const elems = document.querySelectorAll('.prop');
 
         elems.forEach(element => {

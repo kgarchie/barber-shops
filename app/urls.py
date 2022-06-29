@@ -15,4 +15,5 @@ urlpatterns = [
 
     path('about/', views.about, name='about'),
     path('cs/', views.cs, name='cs'),
+    path('daraja/stk-push/', views.stk_push_callback, name='mpesa_stk_push_callback'),
 ]

@@ -125,13 +125,54 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'yolareyes0805@gmail.com'
-EMAIL_HOST_PASSWORD = 'jaahktfirazfipiu'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'yolareyes0805@gmail.com'
+# EMAIL_HOST_PASSWORD = 'jaahktfirazfipiu'
+
+# The Mpesa environment to use
+# Possible values: sandbox, production
+
+MPESA_ENVIRONMENT = 'sandbox'
+
+# Credentials for the daraja app
+
+MPESA_CONSUMER_KEY = 'QfkhuMAKG1WP76klZjUDIh0MptejMb2E'
+MPESA_CONSUMER_SECRET = '7tjIDAAE69Z9gr0g'
+
+# Shortcode to use for transactions. For sandbox  use the Shortcode 1 provided on test credentials page
+
+MPESA_SHORTCODE = '600990'
+
+# Shortcode to use for Lipa na MPESA Online (MPESA Express) transactions
+# This is only used on sandbox, do not set this variable in production
+# For sandbox use the Lipa na MPESA Online Shorcode provided on test credentials page
+
+MPESA_EXPRESS_SHORTCODE = '600990'
+
+# Type of shortcode
+# Possible values:
+# - paybill (For Paybill)
+# - till_number (For Buy Goods Till Number)
+
+MPESA_SHORTCODE_TYPE = '600990'
+
+# Lipa na MPESA Online passkey
+# Sandbox passkey is available on test credential's page
+# Production passkey is sent via email once you go live
+
+MPESA_PASSKEY = 'LunqT1tMsiF1Fyw490J+wuBqEXtt08wuYrmM4uANZSuPGWKkJdSBVwApb4vy0ioUpuw85N6R/zk4RB4ii2GQgcHa+9gxiIBxB2chG4vB+egLqVZ3fKxGjj83byLTcgBmopx7j/f2yI8vGI3T84dJMrSCK2Ri//bU2orTs+JbaUSsAXg7QFlSabjFyS+ILLx63Bb2mT7gyeEFMiXCd3w08ZXQ0hmDg3m7V7TK+I+cVMhjEMN6PVRX7flB/Mf8rYsjGAG4VjFbh1hoFrPvyB0VKCsamPBDyVggrkgg/k5/TXtM0M151MmH3NSmW8MZ7s62hZQuBV47YKRuFKS7H82U3A=='
+
+# Username for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+
+MPESA_INITIATOR_USERNAME = 'bosireallan'
+
+# Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+
+MPESA_INITIATOR_SECURITY_CREDENTIAL = 'Allan.1Janice@'
 
 django_heroku.settings(locals())
