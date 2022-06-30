@@ -185,7 +185,8 @@ def stk_push_success(request):
     # This url is to be used only when the site is hosted on an online server
     callback_url = request.build_absolute_uri(reverse('app:mpesa_stk_push_callback'))
     response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-    return HttpResponse(response)
+    # return HttpResponse(response)
+    return redirect('app:mpesa_stk_push_callback')
 
 
 def business_payment_success(request):
