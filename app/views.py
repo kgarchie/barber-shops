@@ -159,7 +159,9 @@ def get_report_details(request, id):
 
 def stk_push_callback(request):
     data = request.body
-    message = data["ResultDesc"]
+    message = data.decode('utf-8')
+    json.loads(message)
+    message = message['ResultDesc']
 
     appointment = Appointments.objects.filter(user=request.user)
     context = {
@@ -180,12 +182,11 @@ def stk_push_success(request):
     amount = 1
     account_reference = 'reference'
     transaction_desc = 'Description'
-    # callback_url = stk_push_callback_url # use when unhosted
+    callback_url = stk_push_callback_url # use when unhosted
     # This url is to be used only when the site is hosted on an online server
-    callback_url = request.build_absolute_uri(reverse('app:mpesa_stk_push_callback'))
+    # callback_url = request.build_absolute_uri(reverse('app:mpesa_stk_push_callback'))
     response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-    # return HttpResponse(response)
-    return redirect('app:mpesa_stk_push_callback')
+    return HttpResponse(response)
 
 
 def business_payment_success(request):
