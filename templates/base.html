@@ -45,6 +45,12 @@
                 Appointments
             </a>
 
+            {% if user.is_staff %}
+                <a class="navbar-item prop invert" href="{% url 'app:reports' %}">
+                    Reports
+                </a>
+            {% endif %}
+
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link prop invert">
                     More

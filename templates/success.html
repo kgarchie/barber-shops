@@ -93,7 +93,7 @@
                 visibility: visible;
             }
 
-            #section-to-print{
+            #section-to-print {
                 position: absolute;
                 width: 50vw;
                 height: 50vh;
@@ -103,6 +103,11 @@
             }
         }
     </style>
+    {% if message %}
+        <script>
+            window.alert(toString({{ message }}))
+        </script>
+    {% endif %}
     <div class="container is-grid">
         {% for appointment in appointments %}
             <div class="card p-4 mt-3" {% if forloop.first %} id="section-to-print" {% endif %}>

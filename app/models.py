@@ -51,3 +51,17 @@ class Appointments(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Reports(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    appointments = models.ManyToManyField(Appointments)
+
+    class Meta:
+        verbose_name_plural = "Reports"
+
+    def count_appointments(self):
+        return self.appointments.all().count()
+
+    def __str__(self):
+        return self.user.username

@@ -1,26 +1,28 @@
-import datetime
-from django.shortcuts import render, redirect
+import json
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-import base64
-from requests.auth import HTTPBasicAuth
-
 from .forms import UserCreationForm, AppointmentsCreationForm
 from django.contrib.auth.models import User
-from .models import Barber, Locations, Appointments, Cut
+from .models import Barber, Locations, Appointments, Cut, Reports
 from django.contrib.auth.decorators import login_required
-import requests
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django_daraja.mpesa.core import MpesaClient
 
 stk_push_callback_url = 'https://darajambili.herokuapp.com/express-payment'
 b2c_callback_url = 'https://darajambili.herokuapp.com/b2c/result'
 
+cl = MpesaClient()
+
 
 # Create your views here.
 
+class Phone:
+    phone = ''
+
+
 def index(request):
-    return render(requests, 'index.html')
+    return render(request, 'index.html')
 
 
 @login_required(login_url='app:login')
@@ -50,10 +52,7 @@ def book(request):
 
         dye = False
 
-        phone = request.POST['phone']
-        if phone:
-            # lipa_na_mpesa_online(phone)
-            LipaV_2(request, phone)
+        phone_number = request.POST['phone']
         sth = request.POST['sth']
         locale_f = request.POST['locale']
         if locale_f != '':
@@ -61,7 +60,11 @@ def book(request):
         else:
             locale = Locations.objects.get(id=1)
         print('Filled Everything')
-        Appointments.objects.create(user=user, cut=cut, barber=barber, dye=dye, sth=sth, locale=locale)
+        appointment = Appointments.objects.create(user=user, cut=cut, barber=barber, dye=dye, sth=sth, locale=locale)
+        record_report(user, appointment)
+        if phone_number:
+            Phone.phone = phone_number
+            return redirect('app:force-pay')
         return redirect('app:appointments')
     return render(request, 'bookings.html', context)
 
@@ -108,10 +111,8 @@ def register(request):
 @login_required(login_url='app:login')
 def appointments(request):
     appointment = Appointments.objects.filter(user=request.user)
-    count = Appointments.objects.all().count()
     context = {
         'appointments': appointment,
-        'count': count,
     }
     if 'next' in request.POST:
         return redirect(request.POST['next'])
@@ -127,70 +128,65 @@ def cs(request):
     return render(request, 'cs.html')
 
 
-# Deprecated
-def get_mpesa_token():
-    consumer_key = "AwAmK7Uv7SsKc2ETzNEtaCS3glvl5phV"
-    consumer_secret = "aU6I2DibjXpyfh2f"
-    api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+def record_report(user, appointment):
+    report = Reports.objects.create(user=user)
+    report.appointments.add(appointment)
 
-    # make a get request using python requests library
-    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-
-    # return access_token from response
-    token = r.json()['access_token']
-
-    return token
+    print('Recorded')
 
 
-# Deprecated
-class LipanaMpesaPassword:
-    lipa_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    Business_short_code = "174379"
-    passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
-    data_to_encode = Business_short_code + passkey + lipa_time
-    online_password = base64.b64encode(data_to_encode.encode())
-    decode_password = online_password.decode('utf-8')
+def get_reports(request):
+    if request.user.is_staff:
+        reports = Reports.objects.all()
+        report_appointments = []
+        context = {
+            'reports': reports,
+            'appointment': report_appointments,
+        }
+        return render(request, 'reports.html', context)
 
 
-# Deprecated
-def lipa_na_mpesa_online(phone):
-    access_token = get_mpesa_token()
-    api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
-    headers = {"Authorization": "Bearer %s" % access_token}
-    request = {
-        "BusinessShortCode": LipanaMpesaPassword.Business_short_code,
-        "Password": LipanaMpesaPassword.decode_password,
-        "Timestamp": LipanaMpesaPassword.lipa_time,
-        "TransactionType": "CustomerPayBillOnline",
-        "Amount": 1,
-        "PartyA": phone,  # replace with your phone number to get stk push
-        "PartyB": LipanaMpesaPassword.Business_short_code,
-        "PhoneNumber": phone,  # replace with your phone number to get stk push
-        "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-        "AccountReference": "Abdi",
-        "TransactionDesc": "Testing stk push"
-    }
-    response = requests.post(api_url, json=request, headers=headers)
-    print(str(response))
-    return HttpResponse(str(response))
+def get_report_details(request, id):
+    if request.user.is_staff:
+        user = Reports.objects.get(id=id).user
+        appointment = Appointments.objects.filter(user=user)
+        context = {
+            'appointments': appointment,
+        }
 
-
-def LipaV_2(request, phone):
-    cl = MpesaClient()
-    # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
-    phone_number = phone
-    amount = 1
-    account_reference = 'reference'
-    transaction_desc = 'Description'
-    callback_url = request.build_absolute_uri(
-        reverse('app:mpesa_stk_push_callback'))
-    response = cl.stk_push(phone_number, amount,
-                           account_reference, transaction_desc, callback_url)
-    return HttpResponse(response)
+        return render(request, 'report-details.html', context)
 
 
 def stk_push_callback(request):
     data = request.body
-    print(data)
-    return render(request, 'success.html')
+    data = json.loads(data)
+    message = data["ResultDesc"]
+
+    appointment = Appointments.objects.filter(user=request.user)
+    context = {
+        'appointments': appointment,
+        'message': message,
+    }
+
+    return render(request, 'success.html', context)
     # You can do whatever you want with the notification received from MPESA here.
+
+
+def oauth_access(request):
+    return JsonResponse(cl.access_token(), safe=False)
+
+
+def stk_push_success(request):
+    phone_number = Phone.phone
+    amount = 1
+    account_reference = 'reference'
+    transaction_desc = 'Description'
+    # callback_url = stk_push_callback_url # use when unhosted
+    # This url is to be used only when the site is hosted on an online server
+    callback_url = request.build_absolute_uri(reverse('app:mpesa_stk_push_callback'))
+    response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+    return HttpResponse(response)
+
+
+def business_payment_success(request):
+    pass

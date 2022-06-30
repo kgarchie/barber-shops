@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Reports</title>
+{% endblock %}
+
+{% block content %}
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #print-area, #print-area * {
+                visibility: visible;
+            }
+        }
+    </style>
+    <div class="container mt-5" style="display: flex; width: 100vw; justify-content: center">
+        <button onclick="window.print()" class="button is-success">Print</button>
+    </div>
+    <table class="table mt-5 mb-5 container" id="print-area">
+        <thead>
+        <tr>
+            <th>Position</th>
+            <th>User</th>
+            <th>Location</th>
+            <th>Attendant</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Position</th>
+            <th>User</th>
+            <th>Location</th>
+            <th>Attendant</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        {% for item in reports %}
+            <tr>
+                <th rowspan="{{ item.appointments.count }}">{{ forloop.counter }}</th>
+                {% for visit in item.appointments.all %}
+                    <td><a href="{% url 'app:report-details' item.id %}"
+                           title="{{ item.user.username }}">{{ item.user.username }}</a>
+                    </td>
+                    <td>{{ visit.locale }} </td>
+                    <td>{{ visit.barber }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
