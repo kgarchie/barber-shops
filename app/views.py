@@ -159,7 +159,6 @@ def get_report_details(request, id):
 
 def stk_push_callback(request):
     data = request.body
-    data = json.loads(data)
     message = data["ResultDesc"]
 
     appointment = Appointments.objects.filter(user=request.user)
